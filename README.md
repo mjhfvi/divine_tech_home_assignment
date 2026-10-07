@@ -1,10 +1,43 @@
 # Divine Tech Home Assignment
 
-Description: A GitHub repository containing the code, IaC, and pipeline
+## Table of Contents
+
+- [Divine Tech Home Assignment](#divine-tech-home-assignment)
+  - [Table of Contents](#table-of-contents)
+  - [Description](#description)
+  - [Architecture Diagram](#architecture-diagram)
+  - [Configuration Files](#configuration-files)
+  - [Python Code](#python-code)
+  - [Pipeline](#pipeline)
+  - [Terraform](#terraform)
+    - [terraform code will build](#terraform-code-will-build)
+    - [terraform code to run](#terraform-code-to-run)
+  - [Build Docker Image](#build-docker-image)
+  - [Testing API](#testing-api)
+  - [One Paragraph: "What I would change in a real production environment"](#one-paragraph-what-i-would-change-in-a-real-production-environment)
+
+## Description
+
+A GitHub repository containing the code, IaC, and pipeline
 this how to deploy, how to tear down, and a simple architecture diagram
 using an Azure Free Account, There is no need to keep the environment running after submission.
 
-## Configuration Automation Files
+## Architecture Diagram
+
+API ──> Managed Identity ──> Service Bus Queue ──> KEDA
+Worker ──> Managed Identity ──> Key Vault
+Service Bus DLQ ──> Azure Monitor ──> Email
+
+```mermaid
+flowchart LR
+    API[API] -->|Managed Identity| SBQ[(Service Bus Queue)]
+    SBQ -->|KEDA| Worker[Worker]
+    Worker -->|Managed Identity| KV[Key Vault]
+    SBQ -.->|dead-letter| DLQ[(Service Bus DLQ)]
+    DLQ --> Monitor[Azure Monitor] --> Email[Email]
+```
+
+## Configuration Files
 
 the project include general files to complete tasks before pushing to git
 
@@ -43,16 +76,28 @@ setup the git project in github actions with variable inputs for the pipeline
 - Azure Key Vault
 - Log Analytics Workspace
 
+### terraform code to run
+
+login to your azure account
+
+```bash
+az login
+```
+
+the terraform code is using `secret.tfvars` to pass variables
+Note: the code include `-auto-approve` this will build the infrastructure without asking for approve
+
 ```bash
 cd terraform
 
 terraform init
 
-terraform plan -var-file="secret.tfvars" -out=plan-out
+terraform plan -var-file="secret.tfvars" -out=plan-out.tfstate
 
-terraform apply -var-file="secret.tfvars" -out=plan-out
+terraform apply -var-file="secret.tfvars" -backup=plan-out.tfstate -auto-approve
 
-terraform destroy
+terraform destroy -auto-approve
+
 ```
 
 ## Build Docker Image
@@ -85,8 +130,14 @@ docker run -p 8000:8000 --name divine-app divine-ai:latest
 
 ## Testing API
 
+```bash
 curl -X POST localhost:8000/webhook/message -H 'Content-Type: application/json' -d '{"user":"alice","text":"hi"}'
+
 curl localhost:8000/health
+```
+
+---
+---
 
 ## One Paragraph: "What I would change in a real production environment"
 

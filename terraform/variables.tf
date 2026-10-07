@@ -1,3 +1,17 @@
+variable "lifecycle_prevent_destroy" {
+  description = "prevent destruction of azure resources"
+  type        = bool
+  nullable    = false
+  default     = "false"
+}
+
+variable "location" {
+  description = "azure resource location"
+  type        = string
+  nullable    = false
+  default     = "israelcentral"
+}
+
 variable "environment" {
   description = "environment prod/dev"
   type        = string

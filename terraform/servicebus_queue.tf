@@ -1,5 +1,5 @@
 resource "azurerm_servicebus_namespace" "example" {
-  name                = "tfex-servicebus-namespace"
+  name                = "divine-tfex-servicebus-namespace-${var.environment}-01"
   location            = azurerm_resource_group.example.location
   resource_group_name = azurerm_resource_group.example.name
   sku                 = "Standard"
@@ -10,8 +10,7 @@ resource "azurerm_servicebus_namespace" "example" {
 }
 
 resource "azurerm_servicebus_queue" "example" {
-  name         = "tfex_servicebus_queue"
+  name         = "divine-tfex-servicebus-queue-${var.environment}-01"
   namespace_id = azurerm_servicebus_namespace.example.id
-
   partitioning_enabled = true
 }
