@@ -43,6 +43,7 @@ jobs:
   build:
     name: Build and push image
     runs-on: ubuntu-latest
+    environment: production
     # outputs:
     #   image: ${{ steps.meta.outputs.image }}
     steps:
