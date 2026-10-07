@@ -1,0 +1,20 @@
+# Folders to ignore
+__pycache__
+.github
+doc
+terraform
+
+# Files Extensions to ignore
+*.pyc
+*.yml
+*.yaml
+*.json
+*.toml
+*.md
+
+# Files to ignore
+.editorconfig
+.gitattributes
+.gitignore
+.secrets.baseline
+.talismanrc
