@@ -25,7 +25,13 @@ the application code is located in the `src` folder
 
 ## Pipeline
 
-in Github Actions, run `reusable_docker_build_image.yaml`
+in Github Actions, run `reusable_docker_build_image.yaml` pipeline
+setup the git project in github actions with variable inputs for the pipeline
+
+- ACR_NAME
+- IMAGE_NAME
+- RESOURCE_GROUP
+- CONTAINER_APP_NAME
 
 ## Terraform
 
