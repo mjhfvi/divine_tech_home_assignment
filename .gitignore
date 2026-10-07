@@ -3,7 +3,8 @@
 **.zip
 .terraform.lock.hcl
 terraform.tfstate*
-secret.tfvars
+
 infracost/*
 tfstate.json
 terraform/.terraform.tfstate.lock.info
+plan-out*
