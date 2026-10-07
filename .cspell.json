@@ -1,0 +1,20 @@
+{
+  "dictionaries": [],
+  "dictionaryDefinitions": [],
+  "ignorePaths": [],
+  "ignoreWords": [],
+  "import": [],
+  "version": "0.2",
+  "words": [
+    "azuredocs",
+    "fastapi",
+    "georeplications",
+    "pycache",
+    "PYTHONDONTWRITEBYTECODE",
+    "servicebus",
+    "setuptools",
+    "tfvars",
+    "uvicorn",
+    "venv"
+  ]
+}

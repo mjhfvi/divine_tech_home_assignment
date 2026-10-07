@@ -1,0 +1,30 @@
+---
+# Configuration rules for markdownlint
+config:
+  default: true
+  # Disable or customize specific rules using their rule IDs
+  MD013:  # Line length
+    line_length: 120
+    code_blocks: false
+  MD024:  # Multiple headers with same content
+    siblings_only: true
+  no-trailing-spaces: false
+  MD033:  # Allow specific HTML tags
+  allowed_elements: [span, div, details, summary]
+## Automatically fix errors where possible
+fix: true
+
+## Use root gitignore to skip files
+gitignore: true
+
+## Add files or patterns to ignore
+# ignores:
+#   - "node_modules/**"
+#   - "CHANGELOG.md"
+
+## Specify targeted overrides
+# overrides:
+#   - filter:
+#       - "docs/legacy/*.md"
+#     config:
+#       MD003: false  # Disable header style enforcement for old docs

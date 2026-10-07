@@ -1,0 +1,24 @@
+fileignoreconfig:
+  - filename: .secrets.baseline
+    ignore_detectors: [filecontent]
+  - filename: postgresql/postgresql-secret.yaml
+    ignore_detectors: [filecontent]
+  - filename: postgresql/values.yaml
+    ignore_detectors: [filecontent]
+  - filename: traefik/values.yaml
+    ignore_detectors: [filecontent]
+  - filename: postgresql/pgadmin/README.md
+    ignore_detectors: [filecontent]
+  - filename: postgresql/exporter/values.yaml
+    ignore_detectors: [filecontent]
+  - filename: postgresql/pgadmin/values.yaml
+    ignore_detectors: [filecontent]
+  - filename: terraform/README.md
+    ignore_detectors: [filecontent]
+
+  - filename: postgresql/exporter/postgresql-secret.yaml
+    ignore_detectors: [filename]
+  - filename: postgresql/postgresql-configmap.yaml
+    ignore_detectors: [filename]
+  - filename: postgresql/postgresql-secret.yaml
+    ignore_detectors: [filename]

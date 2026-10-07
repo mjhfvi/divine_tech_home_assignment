@@ -1,0 +1,8 @@
+**/plan-out
+**/.terraform/
+**.zip
+.terraform.lock.hcl
+terraform.tfstate*
+secret.tfvars
+infracost/*
+tfstate.json
